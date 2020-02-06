@@ -1,0 +1,19 @@
+{
+  "name": "meanstackproject",
+  "version": "0.0.1",
+  "description": "Lerna Monorepo Workspace for a Dockerised MEAN App",
+  "author": "Naaman Curtis <naaman.the.dev@gmail.com>",
+  "private": true,
+  "husky": {
+    "hooks": {
+      "pre-commit": "lerna run precommit",
+      "post-commit": "lerna run postcommit"
+    }
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "husky": "^4.2.1",
+    "lerna": "^3.20.2",
+    "lint-staged": "^10.0.2"
+  }
+}

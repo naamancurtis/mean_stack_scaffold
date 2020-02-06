@@ -1,0 +1,20 @@
+h1 {
+  text-align: center;
+}
+
+.centered {
+  margin: 0 auto;
+}
+
+button {
+  height: 50px;
+  width: 200px;
+  color: whitesmoke;
+  background-color: coral;
+  font-size: 1rem;
+  border-radius: 5px;
+
+  .pink {
+    background-color: deeppink;
+  }
+}

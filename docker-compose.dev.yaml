@@ -1,0 +1,49 @@
+version: "3.7"
+
+services:
+  docker-builder:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: docker-builder
+  nginx:
+    restart: always
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.dev
+    depends_on:
+      - web_app
+      - api
+    ports:
+      - '8080:80'
+  mongodb:
+    image: mongo:latest
+    restart: always
+    volumes:
+      - ./data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=MyApp
+  web_app:
+    container_name: web_app
+    build:
+      context: .
+      dockerfile: packages/web_app/Dockerfile.dev
+    volumes:
+      - './packages/web_app:/repo/packages/web_app'
+      - '/packages/web_app/node_modules'
+    environment:
+      - SERVER_PORT=3000
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: packages/api/Dockerfile.dev
+    depends_on:
+      - mongodb
+    volumes:
+        - '/packages/api/node_modules'
+        - './packages/api:/repo/packages/api'
+    environment:
+      - MONGO_HOST=mongodb
+      - MONGO_PORT=27017
+      - MONGO_INITDB_DATABASE=MyApp

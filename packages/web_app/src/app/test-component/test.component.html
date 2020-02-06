@@ -1,0 +1,6 @@
+<h1>{{ dataRequest.message }}</h1>
+<button class="pink centered" (click)="getCount()">Get Count</button>
+<button class="pink centered" (click)="incrementCount()">Increment Count</button>
+<h1 *ngIf="count !== undefined">The count is {{ count }}</h1>
+<hr />
+<img src="{{ dataRequest.imageUrl }}" alt="It works!" class="centered" />

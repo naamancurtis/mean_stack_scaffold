@@ -1,0 +1,109 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a sample MEAN stack API",
+    "version": "0.0.1",
+    "title": "MEAN stack API",
+    "contact": {
+      "email": "naaman.the.dev@gmail.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/naamancurtis/mean_stack_scaffold/blob/master/license.md"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/api",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/test": {
+      "get": {
+        "tags": [
+          "test"
+        ],
+        "summary": "Test that the API is wired up",
+        "description": "",
+        "operationId": "testApi",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "schema": {
+              "$ref": "#/definitions/Test"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/test/count": {
+      "get": {
+        "tags": [
+          "test"
+        ],
+        "summary": "Test that the API is wired up to the database",
+        "description": "",
+        "operationId": "testApiCount",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "schema": {
+              "$ref": "#/definitions/Count"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "test"
+        ],
+        "summary": "Test that the API is wired up to the database",
+        "description": "Increment the Count by 1",
+        "operationId": "testApiCountIncrement",
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Test": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "Count": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    }
+  }
+}

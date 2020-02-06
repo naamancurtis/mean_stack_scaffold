@@ -1,0 +1,23 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist-spec/",
+    "module": "commonjs",
+    "types": [
+      "node",
+      "jest",
+      "supertest"
+    ],
+    "emitDecoratorMetadata": true,
+    "allowJs": true,
+    "esModuleInterop": true
+  },
+  "exclude": [
+    "src/jestGlobalMocks.ts"
+  ],
+  "include": [
+    "src/**/*.spec.ts",
+    "tests/**/*.spec.ts",
+    "__tests__/**/*.spec.ts"
+  ]
+}

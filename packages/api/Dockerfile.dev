@@ -1,0 +1,7 @@
+FROM node:alpine
+
+COPY --from=docker-builder ./repo ./repo
+
+WORKDIR ./repo/packages/api/
+
+CMD ["npm", "run", "dev"]

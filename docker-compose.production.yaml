@@ -1,0 +1,51 @@
+version: "3.7"
+
+services:
+  docker-builder-prod:
+    container_name: docker-builder-prod
+    build:
+      context: .
+      dockerfile: Dockerfile.build
+    image: docker-builder-prod
+  nginx:
+    container_name: nginx-prod
+    restart: always
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    image:
+      mean-stack-nginx
+    depends_on:
+      - web_app
+      - api
+    ports:
+      - '8080:80'
+  mongodb:
+    image: mongo:latest
+    restart: always
+    volumes:
+      - ./data-prod:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=ProdDb
+  web_app:
+    container_name: web_app_prod
+    build:
+      context: .
+      dockerfile: packages/web_app/Dockerfile
+    environment:
+      - SERVER_PORT=3000
+    image:
+      mean-stack-web-app
+  api:
+    container_name: api_prod
+    build:
+      context: .
+      dockerfile: packages/api/Dockerfile
+    image:
+      mean-stack-api
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_HOST=mongodb
+      - MONGO_PORT=27017
+      - MONGO_INITDB_DATABASE=ProdDb
